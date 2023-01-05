@@ -1,0 +1,255 @@
+ion-card {
+
+    border-radius: 50%;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    
+
+}
+
+ion-list {
+
+    padding: 0 !important;
+}
+
+
+ion-col {
+
+    padding:0;
+}
+
+.deletenotification {
+
+    position: absolute;
+    z-index: 3000;
+    right: 0;
+    top: 0;
+}
+
+ion-avatar img {
+
+border-radius: 0;
+
+}
+
+.notification-item {
+
+    padding: 10px 15px;
+    border-bottom: 1px var(--ion-color-light-shade) solid;
+    color: white;
+}
+
+.greenbg {
+
+    color: var(--ion-color-primary);
+}
+
+.redbg {
+
+    color: var(--ion-color-secondary);
+}
+
+.bluebg {
+
+    color: var(--ion-color-tertiary);
+}
+
+
+.noticon {
+
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    font-size: 25px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+
+.notiquestion ion-button {
+    margin-left: 20px;
+
+}
+
+.icon-green:active {
+
+    color: var(--ion-color-success) !important;
+}
+
+
+
+.notiquestion h3 {
+    margin-top: 15px !important;
+}
+
+.group-item ion-avatar {
+
+    width: 100%;
+    height: 100%;
+
+
+}
+
+
+.notifications ion-avatar img {
+
+    border-radius: 50% !important;
+    width: 100%;
+    height: 100%;
+
+}
+
+.notifications h2 {
+
+    font-size: 1em;
+    margin: 0;
+    margin-left: 20px;
+    margin-top: 10px;
+    font-family: Arial;
+}
+
+.notifications h3 {
+
+    font-size: 0.7em;
+    margin: 0;
+    margin-left: 20px;
+    margin-top: 3px;
+    color: var(--ion-color-dark) !important;
+}
+
+.group {
+
+    border-radius: 50%;
+    background-color: var(--ion-color-primary);
+    overflow: hidden;
+    width: 90px;
+    height: 90px;
+    border: var(--ion-color-primary) 7px solid;
+    margin: auto;
+}
+
+
+.group ion-grid {
+
+    padding: 0;
+
+
+}
+
+.nobtn {
+
+    --opacity: 0.7;
+    --background-focused-opacity: 1;
+    --background-hover-opacity: 1;
+    margin-left: 10px !important;
+    --background: var(--ion-color-medium-tint) !important;
+
+}
+
+.frimeravatar {
+
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.frimercrown {
+
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 38px;
+}
+
+.crownlabel {
+
+    padding-bottom: 10px;
+    background: none;
+    text-align: center;
+    font-size: 0.9em;
+    position: absolute;
+    bottom: -30px;
+    margin: auto;
+}
+
+
+h1 {
+
+    margin: auto;
+    margin-bottom: 8px;
+    text-align: center;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.group-infos,
+.group-host {
+    margin: auto;
+}
+
+.group-host {
+
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+.group-infos ion-item {
+
+    margin:  -15px 0;
+    margin-left: -10px;
+
+}
+
+.group-host ion-avatar {
+
+    width: 50px;
+    height: 50px;
+    margin-top: 15px;
+}
+
+.group-host ion-avatar img {
+
+    border-radius: 50%;
+
+}
+
+
+
+.group-infos ion-label {
+
+    margin: 0;
+    margin-left: 5px;
+    font-size: 0.6em;
+    
+}
+
+
+.group-item {
+
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ion-color-light-shade);
+    text-align: center;
+
+}
+
+.nofrimes {
+
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5vh;
+    width: 50%;
+
+}
+
+.nofrimes ion-button {
+
+    display: inline;
+}

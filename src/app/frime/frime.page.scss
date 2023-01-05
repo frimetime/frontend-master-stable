@@ -1,0 +1,135 @@
+:host {
+  --page-margin: var(--app-fair-margin);
+  --page-background: var(--app-background-shade);
+}
+.inputs-list {
+  padding: var(--page-margin) var(--page-margin) calc(var(--page-margin) * 2);
+  ion-list-header {
+    --padding-start: 20px;
+    --padding-end: 20px;
+    margin: auto;
+    .header-title {
+      text-transform: uppercase;
+      font-size: 16px;
+      color: var(--ion-color-light);
+      margin: auto;
+    }
+  }
+  .input-item {
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --background: var(--ion-color-success);
+    color: white;
+  }
+  .terms-item {
+    --border-width: 0px;
+    --inner-padding-end: 0px;
+  }
+  .error-container {
+    .error-message {
+      margin: calc(var(--page-margin) / 2) 0px;
+      display: flex;
+      align-items: center;
+      color: var(--ion-color-danger);
+      font-size: 14px;
+      ion-icon {
+        padding-inline-end: calc(var(--page-margin) / 2);
+        flex-shrink: 0;
+      }
+    }
+  }
+  .counter-item {
+    app-counter-input {
+      --counter-background: transparent;
+      --counter-color: var(--ion-color-dark);
+      --counter-border-color: var(--ion-color-dark);
+    }
+    .counter-value {
+      text-align: center;
+    }
+  }
+}
+.frimebubble {
+  --background: var(--ion-color-success);
+}
+#frime-title-blank {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: var(--ion-color-dark);
+  margin: auto;
+  margin-top: -5vh;
+}
+
+#frime-title-blank .input-item {
+  --background: var(--ion-color-light);
+}
+#frime-title-blank ion-label {
+  color: var(--ion-color-dark);
+}
+ion-label {
+  font-family: Arial;
+}
+.duo-btns {
+  position: absolute;
+  bottom: 0;
+  width: 100vw !important;
+}
+.duo-btns ion-button {
+  width: 50%;
+  margin: 0;
+  min-height: 70px;
+  max-height: 7vh;
+  border: 0;
+}
+h2 {
+  text-align: center;
+}
+.bgred {
+  background-color: #c61c2f;
+  color: white;
+}
+.bggreen {
+  background-color: #21b573;
+  color: white;
+}
+.bgblue {
+  background-color: #3ac5ff;
+  color: white;
+}
+ion-datetime {
+  color: var(--ion-color-dark);
+}
+#description-field {
+  height: 15vh;
+}
+.description-input {
+  height: 15vh !important;
+}
+ion-icon {
+  margin-right: 10px;
+}
+.error-message
+{
+  color: var(--ion-color-danger-tint);
+  font-size: 0.7em;
+}
+
+// FOR NOTIFICATION POPUP TEST
+// ion-card {
+
+//   height: 40px !important;
+//   z-index: 5000 !important;
+
+// }
+
+// .notificationmodal p {
+
+//   margin-top: 0 !important;
+
+// }
+// .closenoti {
+
+//   position: absolute !important;
+//   top: 5px;
+//   right: 5px;
+// }

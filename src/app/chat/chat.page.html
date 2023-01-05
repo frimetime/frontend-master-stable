@@ -1,0 +1,260 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button (click)="myBackButton()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="frimedatapanel">
+    <ion-row>
+      <ion-col class="group-host" size="3">
+        <img src="/assets/images/icon-192px.png" class="frimercrown" />
+        <ion-avatar class="frimeravatar">
+          <img *ngIf="todo.image && todo.image.indexOf('http')<0" src="https://frimetime.com/{{todo.image}}" />
+          <img *ngIf="todo.image && todo.image.indexOf('http')==0" src="{{todo.image}}" />
+          <img *ngIf="todo.image == null" src="/assets/images/avartar.jpg" />
+
+        </ion-avatar>
+        <h2 style="text-align: center;">{{ user.name }}</h2>
+        <!-- <h3 class="crownlabel">James</h3>         -->
+      </ion-col>
+      <ion-col size="8">
+        <h1>{{ todo.title }}</h1>
+        <!-- <h1>Movie Nights</h1>
+        <p>Lorem ipsum dolor sit amet. Yeah let's do this. I'm so excited for our movie selection!</p> -->
+        <p>{{ todo.message }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-list class="frimedata ion-no-padding" lines="none">
+      <ion-item>
+        <ion-icon name="calendar"></ion-icon>
+        <!-- <ion-label>31.5.2020</ion-label> -->
+        <ion-label>{{ todo.date |  date: "shortDate" }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="time"></ion-icon>
+        <!-- <ion-label>20:00</ion-label> -->
+        <ion-label>{{ todo.time }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="people"></ion-icon>
+        <ion-label>{{ todo.guests.toString() + '/' + todo.max.toString() }}</ion-label>
+      </ion-item>
+    <ion-button size="small" fill="clear" color="medium" (click)="cancelFirme()"  *ngIf="!isFriendFrime"> 
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-button>
+      <ion-button size="small" fill="clear" color="medium" (click)="leaveFirme()"  *ngIf="isFriendFrime"> 
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-list>
+
+    <!-- <ion-list class="group-infos">
+              <ion-item>
+                <ion-icon name="calendar"></ion-icon>
+                <ion-label>31.5.2020</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="time"></ion-icon>
+                <ion-label>20:00</ion-label>
+              </ion-item>            
+              <ion-item>
+                <ion-icon name="people"></ion-icon>
+                <ion-label>4/6</ion-label>
+              </ion-item>
+            </ion-list> -->
+
+
+  </ion-grid>
+
+  <ion-grid class="chat-grid">
+    <ion-row *ngFor="let message of messages" class="messagescontainer">
+
+      <ion-col size="10" *ngIf="currentUser !== message.user && message.isleft ===0" class="message other-message">
+        <ion-avatar class="miniavatar">
+          <img *ngIf="message.userimage != null" src="https://frimetime.com/{{ message.userimage }}" />
+          <img *ngIf="message.userimage == null" src="/assets/images/avartar.jpg" />
+        </ion-avatar>
+        <b>{{ message.user }}</b>
+        <div class="time" text-right>
+          <br />
+          {{ message.created_at | date: "short" }}
+        </div>
+        <br />
+        <span>{{ message.content }}</span>
+        <ion-row class="btnrow">
+          <ion-button size="small" fill="clear" color="dark" (click)="sendLiketoComment(message)">
+            <p style="margin-left: 5px;">{{ message.likes.length }}</p>
+            <ion-icon name="heart-circle"></ion-icon>
+            <p style="margin-left: 5px;">like</p>
+          </ion-button>
+          <ion-button size="small" fill="clear" color="dark" (click)="sendReplytoComment(message.id, newMsg)">
+            <ion-icon name="arrow-undo-circle"></ion-icon>
+            <p style="margin-left: 5px;">comment</p>
+          </ion-button>
+          <ion-button size="small" fill="clear" color="medium" (click)="deleteComment(message)">
+            <ion-icon name="close-circle"></ion-icon>
+            <p style="margin-left: 5px;">delete</p>
+          </ion-button>
+        </ion-row>
+        <ion-list class="replies" *ngIf="message.replies && message.replies.length > 0">
+          <div *ngFor="let messageReply of message.replies">
+           <ion-row class="replymsgbox other-message">   <!--*ngIf="messageReply.guest_id != this.userId"> -->
+              <div class="time" text-right>
+                <br />
+                {{ messageReply.created_at | date: "short" }}
+              </div>
+              <ion-avatar class="miniavatar">
+                <img *ngIf="messageReply.userimage != null" src="https://frimetime.com/{{ messageReply.userimage }}" />
+                <img *ngIf="messageReply.userimage == null" src="/assets/images/avartar.jpg" />
+              </ion-avatar>
+              <b>{{ messageReply.user }}</b>
+              <br />
+              <span>{{ messageReply.content }}</span>
+              <ion-row class="replybtnrow">
+                <ion-button size="small" fill="clear" color="medium" (click)="sendLiketoComment(messageReply)">
+                  <p style="margin-right: 5px;">{{ messageReply.likes.length }}</p>
+                  <ion-icon name="heart-circle"></ion-icon>
+                </ion-button>
+                <ion-button size="small" fill="clear" color="medium" (click)="deleteComment(messageReply)">
+                  <ion-icon name="close-circle"></ion-icon>
+                </ion-button>
+              </ion-row>
+            </ion-row>
+            <ion-row class="replymsgbox my-message" *ngIf="messageReply.guest_id == this.userId">
+              <b>{{ messageReply.user }}</b><br />
+              <div class="time" text-right>
+                <br />
+                {{ messageReply.created_at | date: "short" }}
+              </div>
+              <ion-avatar class="miniavatar">
+                <img *ngIf="messageReply.userimage != null" src="https://frimetime.com/{{ messageReply.userimage }}" />
+                <img *ngIf="messageReply.userimage == null" src="/assets/images/avartar.jpg" />
+              </ion-avatar>
+              <br />
+              <span>{{ messageReply.content }}</span>
+              <ion-row class="replybtnrow">
+                <ion-button size="small" fill="clear" color="medium" (click)="sendLiketoComment(messageReply)">
+                  <p style="margin-right: 5px;">{{ messageReply.likes.length }}</p>
+                  <ion-icon name="heart-circle"></ion-icon>
+                </ion-button>
+                <ion-button size="small" fill="clear" color="medium" (click)="deleteComment(messageReply)">
+                  <ion-icon name="close-circle"></ion-icon>
+                </ion-button>
+              </ion-row>
+            </ion-row>
+          </div>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="10" *ngIf="currentUser === message.user && message.isleft===0" class="message my-message">
+        <ion-avatar class="miniavatar">
+          <img *ngIf="message.userimage != null" src="https://frimetime.com/{{ message.userimage }}" />
+          <img *ngIf="message.userimage == null" src="/assets/images/avartar.jpg" />
+        </ion-avatar>
+        <b>{{ message.user }}</b>
+        <div class="time" text-right>
+          <br />
+          {{ message.created_at | date: "short" }}
+        </div>
+        <br />
+        <span>{{ message.content }}</span>
+        <!-- <span>{{ message.replies.length }}</span> -->
+        <ion-row class="btnrow">
+          <ion-button size="small" fill="clear" color="medium" (click)="sendLiketoComment(message)">
+            <p style="margin-right: 5px;">{{ message.likes.length }}</p>
+            <ion-icon name="heart-circle"></ion-icon>
+            <p style="margin-left: 5px;">like</p>
+          </ion-button>
+          <ion-button disabled size="small" fill="clear" color="medium" (click)="sendReplytoComment(message.id, newMsg)">
+            <ion-icon name="arrow-undo-circle"></ion-icon>
+            <p style="margin-left: 5px;">comment</p>
+          </ion-button>
+          <ion-button size="small" fill="clear" color="medium" (click)="deleteComment(message)">
+            <ion-icon name="close-circle"></ion-icon>
+            <p style="margin-left: 5px;">delete</p>
+          </ion-button>
+        </ion-row>
+        
+        <ion-list class="replies" *ngIf="message.replies && message.replies.length > 0">
+          <div *ngFor="let messageReply of message.replies">
+           <ion-row class="replymsgbox other-message">   <!--*ngIf="messageReply.guest_id != this.userId"> -->
+              <div class="time" text-right>
+                <br />
+                {{ messageReply.created_at | date: "short" }}
+              </div>
+              <ion-avatar class="miniavatar">
+                <img *ngIf="messageReply.userimage != null" src="https://frimetime.com/{{ messageReply.userimage }}" />
+                <img *ngIf="messageReply.userimage == null" src="/assets/images/avartar.jpg" />
+              </ion-avatar>
+              <b>{{ messageReply.user }}</b>
+              <br />
+              <span>{{ messageReply.content }}</span>
+              <ion-row class="replybtnrow">
+                <ion-button size="small" fill="clear" color="medium" (click)="sendLiketoComment(messageReply)">
+                  <p style="margin-right: 5px;">{{ messageReply.likes.length }}</p>
+                  <ion-icon name="heart-circle"></ion-icon>
+                </ion-button>
+                <ion-button size="small" fill="clear" color="medium" (click)="deleteComment(messageReply)">
+                  <ion-icon name="close-circle"></ion-icon>
+                </ion-button>
+              </ion-row>
+            </ion-row>
+            <ion-row class="replymsgbox my-message" *ngIf="messageReply.guest_id == this.userId">
+              <b>{{ messageReply.user }}</b><br />
+              <div class="time" text-right>
+                <br />
+                {{ messageReply.created_at | date: "short" }}
+              </div>
+              <ion-avatar class="miniavatar">
+                <img *ngIf="messageReply.userimage != null" src="https://frimetime.com/{{ messageReply.userimage }}" />
+                <img *ngIf="messageReply.userimage == null" src="/assets/images/avartar.jpg" />
+              </ion-avatar>
+              <br />
+              <span>{{ messageReply.content }}</span>
+              <ion-row class="replybtnrow">
+                <ion-button size="small" fill="clear" color="medium" (click)="sendLiketoComment(messageReply)">
+                  <p style="margin-right: 5px;">{{ messageReply.likes.length }}</p>
+                  <ion-icon name="heart-circle"></ion-icon>
+                </ion-button>
+                <ion-button size="small" fill="clear" color="medium" (click)="deleteComment(messageReply)">
+                  <ion-icon name="close-circle"></ion-icon>
+                </ion-button>
+              </ion-row>
+            </ion-row>
+          </div>
+        </ion-list>
+      </ion-col>
+      <ion-col size="10" *ngIf="message.isleft===1" class="message my-message">
+        
+        <div class="smallbox" >
+          <p>{{ message.content }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    
+  </ion-grid>
+  <ins class="adsbygoogle" style="display:inline-block;width:336px;height:100px" data-ad-client="ca-pub-5973684261854"
+  data-adtest="on" data-ad-slot="59736842618"></ins>
+
+  <ion-grid class="chatbar"> 
+    <ion-row align-items-center>
+      <ion-col size="10">
+        <textarea autosize maxRows="4" [(ngModel)]="newMsg" class="message-input" no-padding></textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="msg-btn"
+          (click)="sendMessage()">
+          <ion-icon name="paper-plane-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,60 @@
+<ion-content padding class="form-content">  
+  <h1>Log In</h1>
+
+
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryLogin(validations_form.value)">
+    <ion-item>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message"
+               *ngIf="
+               validations_form.get('email').hasError(validation.type) &&
+               (validations_form.get('email').dirty ||
+                validations_form.get('email').touched)">
+              {{ validation.message }}
+          </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="floating" color="primary">Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>      
+    </div>
+
+    <div class="info-p">
+      <a class="forgot-p" (click)="openForgotPopup()">
+        Forgot Password?
+      </a>
+    </div>
+ <div class="signup-p"><p class>
+      No account yet?
+    </p>
+    </div>
+
+    <ion-button shape="round" id="aths-btn" class="addtohomescreen" size="small" (click)="addToHomeScreen()" padding><p style="text-transform: none;">+Add to Homescreen</p></ion-button>
+
+    
+
+      <div class="social-auth-options">
+      <p class="options-divider">or login with</p>
+      <ion-button shape="round" class="social-auth-btn facebook-auth-btn" color="facebook" (click)="doFacebookLogin()"><ion-icon slot="icon-only" name="logo-facebook"></ion-icon></ion-button>
+      <ion-button shape="round" class="social-auth-btn google-auth-btn" color="google" (click)="doGoogleLogin()"><ion-icon slot="icon-only" name="logo-google"></ion-icon></ion-button>
+    </div>
+
+    <ion-buttons class="duo-footer">
+    <ion-button class="footer-btn bgred" (click)="goSignupPage()">REGISTER</ion-button>
+    <ion-button class="submit-btn bggreen" type="submit" [disabled]="!validations_form.valid" fill="clear">LOG IN</ion-button>
+    </ion-buttons>
+    <label class="error-message">{{errorMessage}}</label>
+  </form>  
+  <img class="login-img" src="/assets/images/frime-logo.png">
+</ion-content>

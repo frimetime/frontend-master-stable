@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "848010872074",
+    "firebase_url": "https://frimetime2020.firebaseio.com",
+    "project_id": "frimetime2020",
+    "storage_bucket": "frimetime2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848010872074:android:2b6737c627bc61faf666f3",
+        "android_client_info": {
+          "package_name": "frimetime2020.android.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848010872074-tld7t158ph0kg0qk4ikqv9teg01dmnpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAOGXD2PRQ8ZNKEkxD_1LAFMC-ksddhIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848010872074-tld7t158ph0kg0qk4ikqv9teg01dmnpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

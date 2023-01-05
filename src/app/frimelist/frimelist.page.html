@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/app/user/friends']">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="notifications-content">
+  <ion-item-group class="noborders" onload="console.log('The Script will load now.')">
+    <ng-container *ngIf="!todos || todos.length == 0">
+      <div class="nofrimes">
+        <p>You have no frimes at the moment.</p>
+        <ion-button [routerLink]="['/app/frime']">
+          <p style="color: white">Frime now!</p>
+        </ion-button>
+      </div>
+    </ng-container>
+
+    <ion-item-sliding *ngFor="let item of todos" class="noborders">
+      <!-- <ion-item color="success"
+        class="notification-item"
+        id="myfrimeitem"
+        lines="none"
+        button
+     [routerLink]="['/chat']"
+      > -->
+      <ion-item color="success" class="notification-item" id="myfrimeitem" lines="none" button
+        (click)="openChat($event, item)">
+        <ion-row class="notification-item-wrapper">
+          <ion-col size="2">
+            <!-- <ion-icon class="frimeicon" name="help-circle" size="large"></ion-icon> -->
+
+            <!-- <ion-icon class="frimeicon frimeaccepted" *ngIf="item.is_accepted == true" name="checkmark-circle" size="large"></ion-icon> -->
+            <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
+              <!-- <img class="frimecrown" src="/assets/images/crown-gold.png" /> -->
+              <!-- <app-image-shell class="notification-image" [alt]="'user image'"></app-image-shell> -->
+
+              <app-image-shell *ngIf="item.image && item.image.indexOf('http')<0" class="user-image"
+                animation="spinner" src="https://frimetime.com/{{item.image}}" [alt]="'frimer'"></app-image-shell>
+              <app-image-shell *ngIf="item.image && item.image.indexOf('http')==0" class="user-image"
+                animation="spinner" src="{{item.image}}" [alt]="'frimer'"></app-image-shell>
+              <app-image-shell *ngIf="!item.image" class="user-image" animation="spinner"
+                src="/assets/images/avartar.jpg" [alt]="'frimer'"></app-image-shell>
+            </app-aspect-ratio>
+          </ion-col>
+          <ion-col class="details-wrapper">
+            <h2 class="details-name">{{ item.owner }}'s Frime</h2>
+            <h3 class="details-title">{{ item.title }}</h3>
+            <p class="details-description">{{ item.message }}</p>
+          </ion-col>
+          <ion-col size="3" class="date-wrapper">
+            <h3 class="notification-date">
+              {{ item.date | date: "shortDate" }}
+            </h3>
+            <h3 class="notification-date">
+              {{ item.time  }}
+            </h3>
+            <h3 class="notification-date">{{ item.guests + '/' + item.max }}</h3>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="remove(item)" color="secondary">
+          Cancel
+          <ion-icon name="close" slot="end"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-item-group>
+  
+ 
+
+
+  <ng-container  *ngIf="notifications">
+    <ion-item-group class="frimerlist">
+      <ng-container *ngIf="!notifications || notifications.length == 0">
+        <div class="nofrimes">
+          <p>There are no other Frimes right now.</p>
+          <ion-button [routerLink]="['/app/frime']">
+            <p style="color: white">Frime now!</p>
+          </ion-button>
+        </div>
+      </ng-container>
+      <ion-item button class="notification-item" lines="none" *ngFor="let notification of notifications"
+        (click)="openPopover($event, notification)">
+        <ion-row class="notification-item-wrapper">
+          <ion-col size="2">
+            <!-- <img src="/assets/images/icon-192px.png" class="frimercrown" *ngIf="notification.requestedByCurrentUser"/> -->
+            <ion-icon class="frimeicon frimerequested" name="help-circle" size="large"  *ngIf="notification.isrequested || notification.requestedByCurrentUser"></ion-icon>
+            <ion-icon class="frimeicon frimeaccepted" *ngIf="notification.isaccepted == true" name="checkmark-circle" size="large"  ></ion-icon>
+            <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
+              <!-- <app-image-shell class="notification-image" [src]="notification.image" [alt]="'user image'">
+              </app-image-shell> -->
+
+              <app-image-shell *ngIf="notification.image && notification.image.indexOf('http')<0" class="user-image"
+                animation="spinner" src="https://frimetime.com/{{notification.image}}" [alt]="'image'">
+              </app-image-shell>
+              <app-image-shell *ngIf="notification.image && notification.image.indexOf('http')==0" class="user-image"
+                animation="spinner" src="{{notification.image}}" [alt]="'image'"></app-image-shell>
+              <app-image-shell *ngIf="!notification.image" class="user-image" animation="spinner"
+                src="/assets/images/avartar.jpg" [alt]="'image'"></app-image-shell>
+            </app-aspect-ratio>
+          </ion-col>
+          <ion-col class="details-wrapper">
+            <h2 class="details-name">{{ notification.name }}</h2>
+            <h3 class="details-title">{{ notification.title }}</h3>
+            <p class="details-description">{{ notification.message }}</p>
+          </ion-col>
+          <ion-col size="2" class="date-wrapper">
+            <h3 class="notification-date">{{ notification.date | date: "shortDate"  }}</h3>
+            <h3 class="notification-date">{{ notification.time   }}</h3>
+            <h3 class="notification-date">{{ notification.guests + '/' + notification.max }}</h3>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-item-group>
+  </ng-container>
+  
+  <a href="https://www.realmix-beverage.com" >
+    <div class="adsbanner">
+      <img src="/assets/images/realmixbanner.jpg">
+   
+    </div>
+  </a>
+
+  <!-- XYZ 336 x 280 -->
+  <ins class="adsbygoogle" style="display:inline-block;width:336px;height:120px" data-ad-client="ca-pub-5973684261854"
+    data-adtest="on" data-ad-slot="59736842618"></ins>
+  <!--<script type="text/javascript">
+
+    // google_adtest = "on";
+    // google_ad_client = "pub-00000000000";
+    // google_ad_slot = "0000000000";
+    // google_ad_width = 336;
+    // google_ad_height = 280;
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script> -->
+  <script type="text/javascript" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</ion-content>

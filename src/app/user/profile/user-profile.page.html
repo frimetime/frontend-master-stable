@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/app/user/friends']">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="notifications-content">
+  <ion-grid>
+    <ion-row class="usercard">
+      <ion-col size="12">
+        <img *ngIf="profile.image != null" class="frimecrown" src="/assets/images/crown-gold.png" />
+        <ion-avatar class="user-avatar">
+          <label for="chooseFile">
+            <img *ngIf="profile.image != null && images.length == 0" src="https://frimetime.com/{{profile.image}}" />
+            <img *ngIf="profile.image != null && images.length != 0" src="{{images}}" />
+            <img *ngIf="profile.image == null" src="/assets/images/avartar.jpg" />
+          </label>
+        </ion-avatar>
+      </ion-col>
+      <input type="file" accept="image/*" id="chooseFile" ng2FileSelect [uploader]="fileUploader"
+        (change)="showImage($event)" style="display: none;" />
+      <ion-col *ngIf="images.length != 0" size="6">
+        <ion-button color="primary" (click)="cancelUpdateProfile()"><label>Cancel</label></ion-button>
+      </ion-col>
+      <ion-col *ngIf="images.length != 0" size="6">
+        <ion-button color="primary" (click)="uploadFile()">Update</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <h1 (click)="editProfile('firstname', 'input', profile.firstname)">{{profile.firstname}}</h1>
+        <h2 (click)="editProfile('username', 'input', profile.username)">{{profile.username}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="ion-padding usercard">
+          <p (click)="editProfile('status', 'textarea', profile.description)">
+            {{profile.description}}
+          </p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item-group class="ion-padding noborders userfrimelist">
+        <ion-item-divider>
+          <ion-label>{{profile.username}}'s active Frimes</ion-label>
+        </ion-item-divider>
+
+        <ng-container *ngIf="!todos || todos.length == 0">
+          <div class="nofrimes">
+            <p>{{profile.username}} has no frimes at the moment.</p>
+          </div>
+        </ng-container>
+
+        <ion-item-sliding *ngFor="let item of todos" class="noborders">
+          <ion-item color="success" class="notification-item" id="myfrimeitem" lines="none" button
+            (click)="openChat($event, item)">
+            <ion-row class="notification-item-wrapper">
+              <ion-col size="2">
+                <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
+                  <!-- <img class="frimecrown" src="/assets/images/crown-gold.png" /> -->
+                  <app-image-shell class="notification-image" src="https://frimetime.com/{{profile.image}}" [alt]="'user image'"></app-image-shell>
+                </app-aspect-ratio>
+              </ion-col>
+              <ion-col class="details-wrapper">
+                <h3 class="details-title">{{ item.title }}</h3>
+                <p class="details-description">{{ item.message }}</p>
+              </ion-col>
+              <ion-col size="3" class="date-wrapper">
+                <h3 class="notification-date">
+                  {{ item.date | date: "shortDate" }}
+                </h3>
+                <h3 class="notification-date">
+                  {{ item.time  }}
+                </h3>
+                <h3 class="notification-date">{{ item.guests + '/' + item.max }}</h3>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option (click)="remove(item)" color="secondary">
+              Cancel
+              <ion-icon name="close" slot="end"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-row>
+    <ion-row class="ion-padding">
+      <ng-container *ngIf="notifications">
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>{{profile.username}}'s past Frimes</ion-label>
+          </ion-item-divider>
+          <ion-item class="notification-item" lines="none" *ngFor="let notification of notifications">
+            <ion-row class="notification-item-wrapper">
+              <ion-col size="2">
+                <app-aspect-ratio [ratio]="{ w: 1, h: 1 }">
+                  <!-- <app-image-shell class="notification-image" [src]="notification.image" [alt]="'user image'"></app-image-shell> -->
+                  <app-image-shell class="notification-image" src="https://frimetime.com/{{profile.image}}" [alt]="'user image'"></app-image-shell>
+                </app-aspect-ratio>
+              </ion-col>
+              <ion-col class="details-wrapper">
+                <h3 class="details-title">{{ notification.title }}</h3>
+                <p class="details-description">{{ notification.message }}</p>
+              </ion-col>
+              <ion-col size="3" class="date-wrapper">
+                <h3 class="notification-date">{{ notification.date | date: "shortDate" }}</h3>
+                <h3 class="notification-date">{{ notification.time  }}</h3>
+                <h3 class="notification-date">{{ notification.guests + '/' + notification.max }}</h3>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-item-group>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-row class="user-details-section">
+    <ion-col class="user-image-wrapper" size="4" offset="4">
+      <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+        <app-image-shell class="user-image" animation="spinner" [src]="profile.userImage"></app-image-shell>
+      </app-aspect-ratio>
+    </ion-col>
+  </ion-row>  
+     <ion-row class="user-data-row">
+        <ion-col align-self="center" class="profile-heading">
+          <h3 class="user-name">
+            <app-text-shell [data]="profile.name"></app-text-shell>
+          </h3>
+        </ion-col>
+      </ion-row>
+  <div class="user-about-section">
+    <p class="user-description">
+      <app-text-shell padding animation="bouncing" lines="4" [data]="profile.about"></app-text-shell>
+    </p>
+  </div>
+  <div class="user-friends-section">
+    <ion-row class="heading-row">
+      <h3 class="details-section-title">{{ 'FRIENDS' | translate }}</h3>
+      <a class="heading-call-to-action" [routerLink]="['/app/user/friends']">{{ 'SEE_ALL' | translate }}</a>
+    </ion-row>
+    <ion-row class="friends-row">
+      <ion-col class="friend-item" size="2" *ngFor="let friend of profile.friends">
+        <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+          <app-image-shell class="friend-picture" [src]="friend.image"></app-image-shell>
+        </app-aspect-ratio>
+        <span class="friend-name">
+          <app-text-shell [data]="friend.name"></app-text-shell>
+        </span>
+      </ion-col>
+    </ion-row>
+  </div> -->
+</ion-content>

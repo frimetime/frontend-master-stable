@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/app/user/friends']">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="notifications-content">
+   <ion-item-group>
+      <ion-item-divider sticky color="success">
+        <ion-label>My Frimes</ion-label>
+      </ion-item-divider>
+    </ion-item-group>
+
+  <ng-container *ngIf="notifications">
+    <ion-item-group>
+      <ion-item-divider sticky color="tertiary">
+        <ion-label>Upcoming Frimes</ion-label>
+      </ion-item-divider>
+      <ion-item class="notification-item" lines="none" *ngFor="let notification of notifications.upcoming" [routerLink]="['/chat']">
+        <ion-row class="notification-item-wrapper">
+          <ion-col size="2">
+            <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+              <app-image-shell class="notification-image" [src]="notification.image" [alt]="'user image'"></app-image-shell>
+            </app-aspect-ratio>
+          </ion-col>
+          <ion-col class="details-wrapper">
+            <h2 class="details-name">{{ notification.name }}</h2>
+            <h3 class="details-title">{{ notification.title }}</h3>
+            <p class="details-description">{{ notification.message }}</p>
+          </ion-col>
+          <ion-col size="2" class="date-wrapper">
+            <h3 class="notification-date">{{ notification.date }}</h3>
+            <h3 class="notification-date">{{ notification.time }}</h3>
+            <h3 class="notification-date">{{ notification.guests }}</h3>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-item-group>
+  </ng-container>
+</ion-content>

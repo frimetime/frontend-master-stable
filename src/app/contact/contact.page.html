@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+        <ion-button [routerLink]="['/app/frimelist']">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png">      
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <h1>You've got some thoughts?</h1>
+    <h2>Contact us!</h2>
+  </div>
+  <ion-card class="ion-padding" color="light">
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="Title here"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Your email address for our answer"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea maxRows="8" class="formarea" placeholder="What's on your mind?"></ion-textarea>
+      </ion-item>
+    </ion-list>
+      <ion-button class="submitcontactform-btn" slot="end">SUBMIT MESSAGE</ion-button>
+  </form>
+  </ion-card>
+  
+</ion-content>

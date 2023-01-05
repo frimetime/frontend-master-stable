@@ -1,0 +1,40 @@
+<ion-app dir="{{textDir}}">
+  <ion-split-pane contentId="frimeContent">
+    <ion-menu class="app-sidemenu" contentId="frimeContent" side="end">
+      <ion-header>
+        <ion-toolbar>
+          <ion-row class="user-details-wrapper">
+            <ion-col class="user-info-wrapper ion-text-center" size="11">
+              <h3 class="user-name">Options</h3>
+            </ion-col>
+          </ion-row>          
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-button color="success" padding (click)="addToHomeScreen()">Add to home screen</ion-button>
+          <ion-item href="https://frimetime.at/investment">
+              <ion-label color="success">
+                Invest now!
+              </ion-label>
+            </ion-item> 
+          <ion-menu-toggle class="frime-sidemenu" auto-hide="false" *ngFor="let p of optionPages"> 
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-label>
+                {{ p.title }}
+              </ion-label>
+            </ion-item>                                         
+          </ion-menu-toggle>
+          
+          <ion-item class="logout-btn" (click)="logout()">
+              <ion-label>
+                Log out
+              </ion-label>
+            </ion-item> 
+        </ion-list>        
+      </ion-content>
+    </ion-menu>
+    <!-- Main app content get's rendered in this router-outlet -->
+    <ion-router-outlet id="frimeContent"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

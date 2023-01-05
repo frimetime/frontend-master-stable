@@ -1,0 +1,170 @@
+{
+    "today":[
+      {
+        "name": "Martin's Frime",
+        "image": "./assets/sample-images/notifications/fc-4.png",
+        "title": "Movie Nights",
+        "message": "Hey guys ;), somebody wants to come over for a movie night?",
+        "time": "19:00 pm",
+        "date": "15 May",
+        "guests": "2 / 6"
+      },
+      {
+        "name": "Jessica's Frime",
+        "image": "./assets/sample-images/notifications/fc-7.png",
+        "title": "Skate Session",
+        "message": "Come on, someone up for a ride at the skate park?",
+        "time": "13:00 pm",
+        "date": "15 May",
+        "guests": "ffa"
+      },
+      {
+        "name": "Peter's Frime",
+        "image": "./assets/sample-images/notifications/fc-1.png",
+        "title": "Dinner at my place",
+        "message": "I'll make a little barbecue at my place. Someone up for it?",
+        "time": "18:30 pm",
+        "date": "15 May",
+        "guests": "1 / 4"
+      },
+      {
+        "name": "Judith's Frime",
+        "image": "./assets/sample-images/notifications/100x100Notification3.jpg",
+        "title": "Brunch at my place",
+        "message": "My daughter just won her first spelling contest. Come over and celebrate with us!",
+        "time": "10:30 pm",
+        "date": "15 May",
+        "guests": "3 / 6"
+      }
+    ],
+    "upcoming":[
+      {
+        "name": "George's Frime",
+        "image": "./assets/sample-images/notifications/100x100Notification4.jpg",
+        "title": "Brunch at my place",
+        "message": "Wooow, that's amazing!",
+        "time": "20:45 pm",
+        "date": "20 Aug",
+        "guests": "11 / 23"
+      },
+      {
+        "name": "Kirsten's Frime",
+        "image": "./assets/sample-images/notifications/100x100Notification5.jpg",
+        "title": "Bowling anyone?",
+        "message": "Thanks again for the dinner, it was delicious!",
+        "time": "16:00 pm",
+        "date": "13 Jul",
+        "guests": "5 / 9"
+      },
+      {
+        "name": "Brian's Frime",
+        "image": "./assets/sample-images/notifications/fc-3.png",
+        "title": "Dinner at my place",
+        "message": "I'll make a little barbecue at my place. Someone up for it?",
+        "time": "18:30 pm",
+        "date": "15 May",
+        "guests": "3 / 7"
+      },
+      {
+        "name": "Elias' Frime",
+        "image": "./assets/sample-images/notifications/fc-2.png",
+        "title": "Another movie night",
+        "message": "I'll make a little barbecue at my place. Someone up for it?",
+        "time": "20:15 pm",
+        "date": "15 May",
+        "guests": "6 / 8"
+      },
+      {
+        "name": "Yannik's Frime",
+        "image": "./assets/sample-images/notifications/fc-8.png",
+        "title": "Skate Session",
+        "message": "Come on, someone up for a ride at the skate park?",
+        "time": "13:00 pm",
+        "date": "15 May",
+        "guests": "1 / 4"
+      },
+      {
+        "name": "Phillip's Frime",
+        "image": "./assets/sample-images/notifications/100x100Notification6.jpg",
+        "title": "Sporty Saturday",
+        "message": "Are you going to the gym today?",
+        "time": "07:30 pm",
+        "date": "5 Jun",
+        "guests": "1 / 4"
+      },
+      {
+        "name": "Diane's Frime",
+        "image": "./assets/sample-images/notifications/100x100Notification7.jpg",
+        "title": "At the beach",
+        "message": "I was wondering if something happened to Sara... she was so weird yesterday.",
+        "time": "21:30 pm",
+        "date": "23 May",
+        "guests": "3 / 7"
+      }
+  ],
+  "past":[
+      {
+        "name": "Gregor's Frime",
+        "image": "./assets/sample-images/user/person_4.jpg",
+        "title": "Brunch at my place",
+        "message": "Wooow, that's amazing!",
+        "time": "20:45 pm",
+        "date": "20 Aug",
+        "guests": "11 / 23"
+      },
+      {
+        "name": "Gregor's Frime",
+        "image": "./assets/sample-images/user/person_4.jpg",
+        "title": "Bowling anyone?",
+        "message": "Thanks again for the dinner, it was delicious!",
+        "time": "16:00 pm",
+        "date": "13 Jul",
+        "guests": "5 / 9"
+      },
+      {
+        "name": "Gregor's Frime",
+        "image": "./assets/sample-images/user/person_4.jpg",
+        "title": "Dinner at my place",
+        "message": "I'll make a little barbecue at my place. Someone up for it?",
+        "time": "18:30 pm",
+        "date": "15 May",
+        "guests": "3 / 7"
+      },
+      {
+        "name": "Gregor' Frime",
+        "image": "./assets/sample-images/user/person_4.jpg",
+        "title": "Another movie night",
+        "message": "I'll make a little barbecue at my place. Someone up for it?",
+        "time": "20:15 pm",
+        "date": "15 May",
+        "guests": "6 / 8"
+      },
+      {
+        "name": "Gregor's Frime",
+        "image": "./assets/sample-images/user/person_4.jpg",
+        "title": "Skate Session",
+        "message": "Come on, someone up for a ride at the skate park?",
+        "time": "13:00 pm",
+        "date": "15 May",
+        "guests": "1 / 4"
+      },
+      {
+        "name": "Gregor's Frime",
+        "image": "./assets/sample-images/user/person_4.jpg",
+        "title": "Sporty Saturday",
+        "message": "Are you going to the gym today?",
+        "time": "07:30 pm",
+        "date": "5 Jun",
+        "guests": "1 / 4"
+      },
+      {
+        "name": "Gregor's Frime",
+        "image": "./assets/sample-images/user/person_4.jpg",
+        "title": "At the beach",
+        "message": "I was wondering if something happened to Sara... she was so weird yesterday.",
+        "time": "21:30 pm",
+        "date": "23 May",
+        "guests": "3 / 7"
+      }
+  ]
+}

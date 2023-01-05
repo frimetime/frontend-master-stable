@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="myBackButton()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Account Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryUpdate(validations_form.value)">
+    <ion-item>
+      <ion-label position="floating" color="primary">UserName</ion-label>
+      <ion-input required type="text" formControlName="username" [ngModel]="profile.username"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.username">
+        <div class="error-message" *ngIf="
+         validations_form.get('username').hasError(validation.type) &&
+          (validations_form.get('username').dirty || validations_form.get('username').touched)
+        ">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label postion="floating" color="primary">Country</ion-label>
+      <ion-select required placeholder="" formControlName="country" okText="OK" cancelText="Back"
+        [(ngModel)]="profile.country">
+        <ion-select-option *ngFor="let c of countryData" value="{{c.id}}">{{c.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.country">
+        <div class="error-message" *ngIf="
+            validations_form.get('country').hasError(validation.type) &&
+            (validations_form.get('country').dirty ||
+              validations_form.get('country').touched)
+          ">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label postion="floating" color="primary">Role</ion-label>
+      <ion-select required placeholder="" role="combobox" formControlName="role" okText="OK" cancelText="Back"
+        [(ngModel)]="profile.sex">
+        <ion-select-option value="female">Female</ion-select-option>
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.role">
+        <div class="error-message" *ngIf="
+            validations_form.get('role').hasError(validation.type) &&
+            (validations_form.get('role').dirty ||
+              validations_form.get('role').touched)
+          ">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label postion="floating" color="primary">Date of birth</ion-label>
+      <ion-datetime formControlName="birthdate" okText="OK" cancelText="Back" displayFormat="DD.MM.YYYY" max="2005"
+        [(ngModel)]="profile.birthdate"></ion-datetime>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.birthdate">
+        <div class="error-message" *ngIf="
+            validations_form.get('birthdate').hasError(validation.type) &&
+            (validations_form.get('birthdate').dirty ||
+              validations_form.get('birthdate').touched)
+          ">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-buttons class="duo-footer">
+      <ion-button class="submit-btn bggreen" type="submit" [disabled]="!validations_form.valid" fill="clear">
+        Update
+      </ion-button>
+    </ion-buttons>
+
+    <ion-item>
+
+      <ion-button class="optionbtn" (click)="requestPushNotificationsPermission()">
+        Enable notifications
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button class="optionbtn" fill="outline" color="medium-tint" (click)="openAccountDeletePopup()">Delete Account</ion-button>
+    </ion-item>
+    <label class="error-message">{{ errorMessage }}</label>
+    <label class="success-message">{{ successMessage }}</label>
+  </form>
+</ion-content>

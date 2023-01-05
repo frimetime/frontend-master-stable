@@ -1,0 +1,209 @@
+<ion-content>
+  <ion-slides pager="true">        
+    <ion-slide>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <h1>Step 1</h1>
+        </ion-col>
+        <ion-col size0="8" push="1">
+          <img src="/assets/images/gettingstarted-slide1.png" />
+        </ion-col>
+        <ion-col size="12">
+          <p>Go to the top right corner and go to your friendlist.</p>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+    <ion-slide>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <h1>Step 2</h1>
+        </ion-col>
+        <ion-col>
+          <img src="/assets/images/gettingstarted-slide2.png" />
+        </ion-col>
+        <ion-col size="12">
+          <p>Find some friends to frime with!</p>
+          <p>Search for them or invite them to FRIMETIME!</p>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+    <ion-slide>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <h1>Step 3</h1>
+        </ion-col>
+        <ion-col>
+          <img src="/assets/images/gettingstarted-slide3.png" />
+        </ion-col>
+        <ion-col size="12">
+          <p>Now you can start a Frime.</p>
+          <p>
+            You need a title, description, starting time, date and the number of
+            guests!
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+    <ion-slide>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <h1>Step 4</h1>
+        </ion-col>
+        <ion-col>
+          <img src="/assets/images/gettingstarted-slide4.png" />
+        </ion-col>
+        <ion-col size="12">
+          <p>
+            Look at your feed, as you can see created Frimes by yourself and
+            from your friends!
+          </p>
+          <p>Join other Frimes with a tap on an active Frime.</p>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+    <ion-slide>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <h1>Step 5</h1>
+        </ion-col>
+        <ion-col>
+          <img src="/assets/images/gettingstarted-slide5.png" />
+        </ion-col>
+        <ion-col size="12">
+          <p>
+            Now if there are more than 2 people in a Frime you can chat with
+            each other!
+          </p>
+          <p>After the Frime is over, the chat will be deleted also.</p>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+    <ion-slide>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <h1>Getting started!</h1>
+        </ion-col>
+        <ion-col size="6" push="3">
+          <img *ngIf="profile.image != null && images.length == 0" src="https://frimetime.com/{{profile.image}}" class="user-avatar">
+          <img *ngIf="profile.image != null && images.length != 0" src="{{images}}" class="user-avatar"/>
+          <img *ngIf="profile.image == null" src="/assets/images/avartar.jpg" class="user-avatar"/>
+        </ion-col>
+        <ion-col size="12">
+          <p>Upload an image for your profile</p>
+        </ion-col>
+        <input type="file" accept="image/*" id="chooseFile" ng2FileSelect [uploader]="fileUploader" (change)="showImage($event)" style="display: none;" />
+        <ion-col size="6"><ion-button color="primary"><label for="chooseFile">Choose</label></ion-button></ion-col>
+        <ion-col size="6"><ion-button color="primary" (click)="uploadFile()">Upload</ion-button></ion-col>
+      </ion-row>
+    </ion-slide>
+    <ion-slide>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <h1>Ready to Go!</h1>
+        </ion-col>
+        <ion-col>
+          <img src="/assets/images/frime-logo.png" />
+        </ion-col>
+        <ion-col size="12">
+          <ion-button color="primary" [routerLink]="['/app/frime']">
+            Start your first Frime!
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+  </ion-slides>
+  <ion-row>
+    <ion-col class="align-center">
+      <ion-button [routerLink]="['/app/frime']">Skip</ion-button>
+    </ion-col>
+  </ion-row>
+  <!-- We need the form wrapping the slides so all the inputs in the different slides are part of the same form -->
+  <!-- <form class="getting-started-form" [formGroup]="gettingStartedForm">
+    <ion-slides class="getting-started-slides" pager="true">
+      <ion-slide class="browsing-categories-slide question-slide">
+        <ion-row class="slide-inner-row">
+          <ion-col class="question-options-col" size="12">
+            <h2 class="slide-title">What are you browsing for?</h2>            
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+      <ion-slide class="interests-to-follow-slide question-slide">
+        <ion-row class="slide-inner-row">
+          <ion-col class="heading-col">
+            <h2 class="slide-title">Pick categories to follow</h2>
+            <p class="slide-subtitle">
+              You can add or change them later
+            </p>
+          </ion-col>
+          <ion-col class="question-options-col">
+            <ion-row class="options-list-row" formGroupName="followingInterests">
+              <ion-col size="6">
+                <app-checkbox-wrapper class="custom-checkbox">
+                  <app-image-shell [mode]="'cover'" animation="spinner" class="checkbox-cover add-overlay" [src]="'./assets/sample-images/getting-started/category1-1.1.png'">
+                    <app-aspect-ratio [ratio]="{w:1, h:1}">
+                      <span class="checkbox-title">Tops</span>
+                      <ion-checkbox checked=true formControlName="tops"></ion-checkbox>
+                    </app-aspect-ratio>
+                  </app-image-shell>
+                </app-checkbox-wrapper>
+              </ion-col>
+              <ion-col size="6">
+                <app-checkbox-wrapper class="custom-checkbox">
+                  <app-image-shell [mode]="'cover'" animation="spinner" class="checkbox-cover add-overlay" [src]="'./assets/sample-images/getting-started/category2-1.1.png'">
+                    <app-aspect-ratio [ratio]="{w:1, h:1}">
+                      <span class="checkbox-title">Dresses</span>
+                      <ion-checkbox formControlName="dresses"></ion-checkbox>
+                    </app-aspect-ratio>
+                  </app-image-shell>
+                </app-checkbox-wrapper>
+              </ion-col>
+              <ion-col size="6">
+                <app-checkbox-wrapper class="custom-checkbox">
+                  <app-image-shell [mode]="'cover'" animation="spinner" class="checkbox-cover add-overlay" [src]="'./assets/sample-images/getting-started/category3-1.1.png'">
+                    <app-aspect-ratio [ratio]="{w:1, h:1}">
+                      <span class="checkbox-title">Jeans</span>
+                      <ion-checkbox formControlName="jeans"></ion-checkbox>
+                    </app-aspect-ratio>
+                  </app-image-shell>
+                </app-checkbox-wrapper>
+              </ion-col>
+              <ion-col size="6">
+                <app-checkbox-wrapper class="custom-checkbox">
+                  <app-image-shell [mode]="'cover'" animation="spinner" class="checkbox-cover add-overlay" [src]="'./assets/sample-images/getting-started/category4-1.1.png'">
+                    <app-aspect-ratio [ratio]="{w:1, h:1}">
+                      <span class="checkbox-title">Jackets</span>
+                      <ion-checkbox checked=true formControlName="jackets"></ion-checkbox>
+                    </app-aspect-ratio>
+                  </app-image-shell>
+                </app-checkbox-wrapper>
+              </ion-col>
+              <ion-col size="6">
+                <app-checkbox-wrapper class="custom-checkbox">
+                  <app-image-shell [mode]="'cover'" animation="spinner" class="checkbox-cover add-overlay" [src]="'./assets/sample-images/getting-started/category5-1.1.png'">
+                    <app-aspect-ratio [ratio]="{w:1, h:1}">
+                      <span class="checkbox-title">Shoes</span>
+                      <ion-checkbox formControlName="shoes"></ion-checkbox>
+                    </app-aspect-ratio>
+                  </app-image-shell>
+                </app-checkbox-wrapper>
+              </ion-col>
+              <ion-col size="6">
+                <app-checkbox-wrapper class="custom-checkbox">
+                  <app-image-shell [mode]="'cover'" animation="spinner" class="checkbox-cover add-overlay" [src]="'./assets/sample-images/getting-started/category6-1.1.png'">
+                    <app-aspect-ratio [ratio]="{w:1, h:1}">
+                      <span class="checkbox-title">Glasses</span>
+                      <ion-checkbox formControlName="glasses"></ion-checkbox>
+                    </app-aspect-ratio>
+                  </app-image-shell>
+                </app-checkbox-wrapper>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col class="call-to-action-col">
+            <ion-button class="signup-button" color="secondary" expand="block" [routerLink]="['/auth/signup']">Sign Up</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+    </ion-slides>
+  </form> -->
+</ion-content>

@@ -1,0 +1,40 @@
+h1,
+h2,
+h3,
+h4 {
+    font-family: Sen;
+    font-weight: 500;
+}
+
+
+h1 {
+    font-size: 1.4em;
+}
+
+h2 {
+    font-size: 1em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+p {
+    font-size: 0.9em;
+    font-family: Arial;
+    line-height: 1.2em;
+}
+
+.frimetimefont {
+
+    font-family: Arial !important;
+    font-weight: 600;
+}
+
+.frimespan {
+    color: var(--ion-color-primary);
+}
+
+.timespan {
+    color: var(--ion-color-danger);
+}

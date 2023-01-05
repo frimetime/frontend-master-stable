@@ -1,0 +1,322 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/app/user/friends']">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list lines="none"  class="notifications">
+    <ion-item-divider sticky>
+      <ion-label>
+        Notifications
+      </ion-label>
+      <ion-button class="deletenotification" (click)="deleteAllNotifications()" size="small" fill="clear" color="medium">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item-divider>
+    <ng-container *ngFor="let i of NotificationsForGroupPage">
+    <ion-item-sliding class="notification-item bluebg" *ngIf="i.title == 'join_request'"  color="tertiary" button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-avatar>
+            <ion-icon class="noticon" name="help-circle"></ion-icon>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'"   src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>Join Request</strong></h2>
+         
+          <h3>{{ i.body.from}} wants to join to your frime "<b>{{i.body.frime_title}}</b>" <b>{{i.time}}</b></h3>
+          
+          
+          <ion-row class="notiquestion">
+            <ion-button color="success" (click)="AcceptFrimeRequest(i.body.request_id, i.Id)" size="small" expand="block">Accept</ion-button>
+            <ion-button class="nobtn" (click)="rejectFrimeRequest(i.body.request_id, i.Id)" size="small" expand="block">No</ion-button>
+            <!-- <ion-icon class="icon-green" name="checkmark-circle" size="large" color="medium"></ion-icon>                    
+            <ion-icon class="icon-red" name="close-circle" size="large" color="medium"></ion-icon> -->
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding>
+
+    <ion-item-sliding class="notification-item bluebg" *ngIf="i.title == 'friend_request'" color="tertiary" button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-avatar>
+            <ion-icon class="noticon" src="/assets/icon/ionicons/person-add-circle.svg"></ion-icon>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'" src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>Friend Request</strong></h2>
+          <h3>{{i.body.from}} wants to be your Friend! <b>{{i.time}}</b></h3>
+          <ion-row class="notiquestion">
+            <ion-button color="success" (click)="acceptFriendRequest(i.body.request_id, i.Id)" size="small">Accept</ion-button>
+            <ion-button class="nobtn" (click)="rejectFirendRequest(i.body.request_id, i.Id)" size="small">No</ion-button>
+            <!-- <ion-icon class="icon-green" name="checkmark-circle" size="large" color="medium"></ion-icon>                    
+            <ion-icon class="icon-red" name="close-circle" size="large" color="medium"></ion-icon> -->
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding>
+
+    <ion-item-sliding class="notification-item greenbg" *ngIf="i.title == 'frime_start1'" color="primary" button>
+      <ion-button class="deletenotification" (click)="deleteNotifications(i.Id)" size="small" fill="clear" color="medium">
+        delete
+      </ion-button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon class="noticon" src="assets/icon/ionicons/frimecrown-circle.svg"></ion-icon>
+          <ion-avatar>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'" src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>FRIMETIME!</strong></h2>
+          <h3>{{i.body}} </h3>
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding>
+    <ion-item-sliding class="notification-item greenbg" *ngIf="i.title == 'new_frimes'" color="primary" button>
+      <ion-button (click)="deleteNotifications(i.Id)" class="deletenotification" size="small" fill="clear" color="medium" >
+        delete
+      </ion-button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon class="noticon" src="assets/icon/ionicons/frimecrown-circle.svg"></ion-icon>
+          <ion-avatar>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'" src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>FRIMETIME!</strong></h2>
+          <h3>New frime is posted by <b>{{i.body.frime_postedby}}</b></h3>
+          <h3>{{i.body.frime_title}} <b>{{i.time}}</b></h3>
+          
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding>
+    <ion-item-sliding class="notification-item greenbg" *ngIf="i.title == 'new_message'" color="primary" button>
+     
+      <ion-button class="deletenotification" (click)="deleteNotifications(i.Id)" size="small" fill="clear" color="medium">
+       delete
+      </ion-button>
+      <!-- <ion-icon name="close-circle"></ion-icon> -->
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon class="noticon" src="assets/icon/ionicons/frimecrown-circle.svg"></ion-icon>
+          <ion-avatar>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'" src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>New Message</strong></h2>
+          <h3>You have received a new message from <b>{{i.body.from}}</b> on your frime "<b>{{ i.body.frime}}</b>"</h3>
+          <!-- <h3>You have received a new message from {{i.body.from}}!</h3> -->
+          <h3>{{i.body.content}}  <b>{{i.time}}</b></h3>
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding>
+    <ion-item-sliding class="notification-item greenbg" *ngIf="i.title == 'accepted_friend_request'" color="primary" button>
+      <ion-button class="deletenotification" (click)="deleteNotifications(i.Id)" size="small" fill="clear" color="medium">
+        delete
+      </ion-button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon class="noticon" name="checkmark-circle"></ion-icon>
+          <ion-avatar>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'" src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>Request accepted!</strong></h2>
+          <h3>{{i.body.from}} accepted your friend request!</h3>
+          <h3> <b>{{i.time}}</b></h3>
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding>
+    <ion-item-sliding class="notification-item greenbg" *ngIf="i.title == 'accepted_join_request'" color="primary" button>
+      <ion-button class="deletenotification" (click)="deleteNotifications(i.Id)" size="small" fill="clear" color="medium">
+        delete
+      </ion-button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon class="noticon" name="checkmark-circle"></ion-icon>
+          <ion-avatar>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'" src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>Request accepted!</strong></h2>
+          <h3>{{i.body.from}} accepted your join request!</h3>
+          <h3> <b>{{i.time}}</b></h3>
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding>
+  <ion-item-sliding  class="notification-item greenbg" *ngIf="i.title != 'new_message' && 
+  i.title != 'new_frimes' && i.title != 'frime_start1' && i.title != 'friend_request'
+  && i.title != 'join_request' && i.title != 'accepted_friend_request' && i.title != 'accepted_join_request'"  color="primary" button>
+  <ion-button class="deletenotification" (click)="deleteNotifications(i.Id)" size="small" fill="clear" color="medium">
+   delete
+  </ion-button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon class="noticon" src="assets/icon/ionicons/frimecrown-circle.svg"></ion-icon>
+          <ion-avatar>
+            <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+            <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'"  src="{{i.icon}}" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>FRIMETIME!</strong></h2>
+          <h3>{{i.title}}</h3>
+          <h3>{{i.body}}!</h3>
+          <h3>{{i.icon}}!</h3>
+        </ion-col>
+      </ion-row>
+    </ion-item-sliding> 
+
+    <!-- <ion-item-sliding  class="notification-item greenbg" *ngIf="i.data == null || i.data == undefined"  color="primary" button>
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="noticon" src="assets/icon/ionicons/frimecrown-circle.svg"></ion-icon>
+            <ion-avatar>
+              <img *ngIf="i.icon != null &&  i.icon == 'https://frimetime.com/'" src="/assets/images/avartar.jpg" />
+              <img *ngIf="i.icon != null &&  i.icon != 'https://frimetime.com/'"  src="{{i.icon}}" />
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="10">
+            <h2><strong>FRIMETIME!</strong></h2>
+            <h3>{{i.title}}!</h3>
+            <h3>{{i.body}}!</h3>
+            <h3>{{i.icon}}!</h3>
+          </ion-col>
+        </ion-row>
+      </ion-item-sliding>  -->
+
+  </ng-container>
+    <!-- <ion-item-sliding class="notification-item redbg" color="secondary" button>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon class="noticon" name="close-circle"></ion-icon>
+          <ion-avatar>
+            <img src="/assets/sample-images/user/person_7.jpg" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <h2><strong>Frime cancelled</strong></h2>
+          <h3>Oliver canceled Basketball session!</h3>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-item-options side="end">
+        <ion-item-option (click)="remove(item)" color="secondary">
+          Cancel
+          <ion-icon name="close" slot="end"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> --.>
+    </ion-item-sliding> -->
+
+    
+
+  </ion-list>
+  <ion-list class="frimegroups" lines="none">
+    <ion-item-divider sticky>
+      <ion-label>
+        Frime Groups
+      </ion-label>
+    </ion-item-divider>
+    <ng-container *ngIf="frimegroups">
+      <ng-container *ngIf="!frimegroups || frimegroups.length == 0">
+        <div class="nofrimes">
+          <p>There are no other Frimes right now.</p>
+          <ion-button [routerLink]="['/app/frime']">
+            <p style="color: white">Frime now!</p>
+          </ion-button>
+        </div>
+      </ng-container>
+      <!-- <ion-item [routerLink]="['/chat']" class="group-item" *ngFor="let item of frimegroups">  -->
+      <!--//TODO (click)="openChat($event, item)" opens page inside group-page. add function and replace [routerLink] -->
+      <ion-item (click)="openChat($event, item)" class="group-item" *ngFor="let item of frimegroups">
+        <ion-grid>
+          <h1>{{ item.title }}</h1>
+          <ion-row>
+            <ion-col class="group-host" size="4">
+              <!--//TODO add user image app shell-->
+              <img src="/assets/images/icon-192px.png" class="frimercrown" />
+              <ion-avatar class="frimeravatar">
+                <img src="/assets/images/avartar.jpg" *ngIf="item.userimage && item.userimage.indexOf('http')<0" src="https://frimetime.com/{{item.userimage}}"/>
+                <img src="/assets/images/avartar.jpg" *ngIf="item.userimage && item.userimage.indexOf('http')==0" src="{{item.userimage}}"/>
+                <img src="/assets/images/avartar.jpg" *ngIf="!item.userimage"/>
+                <!-- <app-image-shell *ngIf="item.userimage && item.userimage.indexOf('http')<0" class="user-image"
+                  animation="spinner" src="https://frimetime.com/{{item.userimage}}" [alt]="'frimer'"></app-image-shell>
+                <app-image-shell *ngIf="item.userimage && item.userimage.indexOf('http')==0" class="user-image"
+                  animation="spinner" src="{{item.userimage}}" [alt]="'frimer'"></app-image-shell>
+                <app-image-shell *ngIf="!item.userimage" class="user-image" animation="spinner"
+                  src="/assets/images/avartar.jpg" [alt]="'frimer'"></app-image-shell> -->
+              </ion-avatar>
+              <p style="text-align: center; font-size: 0.7em;">{{item.username}}'s Frime</p>
+            </ion-col>
+            <ion-col size="4">
+              <div class="group">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-avatar>
+                        <img src="/assets/images/avartar.jpg" />
+                      </ion-avatar>
+                    </ion-col>
+                    <ion-col>
+                      <ion-avatar>
+                        <img src="/assets/images/avartar.jpg" />
+                      </ion-avatar>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-avatar>
+                        <img src="/assets/images/avartar.jpg" />
+                      </ion-avatar>
+                    </ion-col>
+                    <ion-col>
+                      <ion-avatar>
+                        <img src="/assets/images/avartar.jpg" />
+                      </ion-avatar>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </ion-col>
+            <ion-col size="4">
+              <ion-list class="group-infos">
+                <ion-item>
+                  <ion-icon name="calendar"></ion-icon>
+                  <ion-label>{{ item.date | date: "shortDate" }}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="time"></ion-icon>
+                  <ion-label>{{ item.time  }}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="people"></ion-icon>
+                  <ion-label>{{ item.guests.toString() + '/' + item.max.toString() }}</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

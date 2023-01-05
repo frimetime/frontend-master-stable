@@ -1,0 +1,45 @@
+{
+  "configVersion": 3,
+  "index": "/index.html",
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "start_url": "/index.html",
+    "resources": {
+      "files": [
+        "/favicon.ico",
+        "/index.html",
+        "/*.css",
+        "/*.js"
+      ]
+    }
+  }, {
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/**"
+      ]
+    }
+  }],
+  "dataGroups": [
+    {
+      "name": "api-performance",
+      "urls": [
+        "https://frimetime.com/api/register",
+        "https://frimetime.com/api/login", 
+        "https://frimetime.com/api/forget", 
+        "https://frimetime.com/api/verify", 
+        "https://frimetime.com/api/register/social", 
+        "https://frimetime.com/api/login/social",         
+        "https://frimetime.com/api/push/register"
+      ],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "3d2h"
+      }
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>FRIMETIME</title>
+    <base href="/" />
+    <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="description" content="Your mobile app for meeting friends for real this time!" />
+    <!-- favicon -->
+    <!-- If you have a multi size .ico file -->
+    <link rel="shortcut icon" sizes="64x64 48x48 32x32 24x24 16x16" href="assets/icon/favicon.ico" />
+    <!-- If you don't -->
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/icon/favicon-64x64.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/icon/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="24x24" href="assets/icon/favicon-24x24.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/favicon-16x16.png" />
+
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent" />
+    <!-- icons for ios pwa -->
+    <link rel="apple-touch-icon" href="assets/icon/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/icon/icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="assets/icon/icon-167x167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/icon-180x180.png" />
+
+    <!-- spalsh for ios pwa -->
+    <!-- Default@2x~iphone -->
+    <link rel="apple-touch-startup-image" href="assets/splash/splash-640x960.png" />
+    <!-- Default-568h@2x~iphone.png -->
+    <link rel="apple-touch-startup-image" sizes="640x1136" href="assets/splash/splash-640x1136.png" />
+    <!-- Default-667h -->
+    <link rel="apple-touch-startup-image" sizes="750x1334" href="assets/splash/splash-750x1334.png" />
+    <!-- Default-736h -->
+    <link rel="apple-touch-startup-image" sizes="1242x2208" href="assets/splash/splash-1242x2208.png" />
+    <!-- Default-Portrait~ipad -->
+    <link rel="apple-touch-startup-image" sizes="768x1024" href="assets/splash/splash-768x1024.png" />
+    <!-- Default-Portrait@2x~ipad -->
+    <link rel="apple-touch-startup-image" sizes="1536x2048" href="assets/splash/splash-1536x2048.png" />
+    <!-- Default-Portrait@~ipadpro -->
+    <link rel="apple-touch-startup-image" sizes="2048x2732" href="assets/splash/splash-2048x2732.png" />
+
+    <!-- Traditional way was inconsistent, trying an approach with media attribute -->
+    <!-- (see: https://stackoverflow.com/a/51330076/1116959) -->
+    <link rel="apple-touch-startup-image" href="assets/splash/splash-640x1136.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <!-- 750x1294 -->
+    <link rel="apple-touch-startup-image" href="assets/splash/splash-750x1334.png"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <!-- 1242x2148 -->
+    <link rel="apple-touch-startup-image" href="assets/splash/splash-1242x2208.png"
+        media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+    <!-- <link rel="apple-touch-startup-image" href="images/splash/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"> -->
+    <link rel="apple-touch-startup-image" href="assets/splash/splash-1536x2048.png"
+        media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <!-- <link rel="apple-touch-startup-image" href="images/splash/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"> -->
+    <link rel="apple-touch-startup-image" href="assets/splash/splash-2048x2732.png"
+        media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)" />
+
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="main.css">
+    <meta name="theme-color" content="#ffffff" />
+
+
+    <script type=”text/javascript” src=”cordova.js”></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+    </script>
+    <!-- <script data-ad-client="ca-pub-59736842618" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+</head>
+
+<body>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- XYZ 336 x 280 -->
+
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-59736842618",
+            google_ad_slot: 59736842618,
+            enable_page_level_ads: true,
+            google_adtest: "on",
+            overlays: { bottom: true }
+        });
+    </script>
+    <!-- Homepage Leaderboard -->
+    <!--
+    </div> -->
+    <!-- <div id="token_div" style="display: none;">
+       <h4>Instance ID Token</h4>
+      <p id="token" style="word-break: break-all;"></p>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              onclick="deleteToken()">Delete Token</button>
+    </div> -->
+    <!-- div to display the UI to allow the request for permission to
+         notify the user. This is shown if the app has not yet been
+         granted permission to notify. -->
+    <div id="permission_div" style="display: none;">
+        <h4>Needs Permission</h4>
+        <p id="token"></p>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="requestPermission()">
+            Request Permission
+        </button>
+    </div>
+    <!-- div to display messages received by this app. -->
+    <div id="messages"></div>
+
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js"></script>
+    <script type="module"
+        src="https://unpkg.com/web-social-share@latest/dist/websocialshare/websocialshare.esm.js"></script>
+    <script>
+        firebase.initializeApp({
+
+            apiKey: "AIzaSyBNRZ4-w7LWnmlNlWV83PGkkHZerpTi_mg",
+            // authDomain: "frimetime2020.firebaseapp.com",
+            authDomain: "https://frimetime2020.firebaseapp.com",
+            databaseURL: "https://frimetime2020.firebaseio.com",
+            projectId: "frimetime2020",
+            storageBucket: "frimetime2020.appspot.com",
+            messagingSenderId: "848010872074",
+            appId: "1:848010872074:web:2588fd11a7af74b0f666f3",
+            measurementId: "G-6ZC4PXB3YZ",
+            trackerID: "G-6ZC4PXB3YZ",
+            vapidKey: "BIZxEpUQX1-4H3pd-fnPw5lxzxedijdJlmXQYMU-fhcBkkWsH5vi-YtoTQgnctmw9_Tnj2op4Y9N0bhMikeHXM8",
+        });
+        var isNewNotification = false;
+        const data = [];
+        // [START get_messaging_object]
+        // Retrieve Firebase Messaging object.
+        const messaging = firebase.messaging();
+        // [END get_messaging_object]
+        // [START set_public_vapid_key]
+        // Add the public key generated from the console here.
+        messaging.usePublicVapidKey("BIZxEpUQX1-4H3pd-fnPw5lxzxedijdJlmXQYMU-fhcBkkWsH5vi-YtoTQgnctmw9_Tnj2op4Y9N0bhMikeHXM8");
+        // [END set_public_vapid_key]
+
+        // IDs of divs that display Instance ID token UI or request permission UI.
+        const tokenDivId = 'token_div';
+        const permissionDivId = 'permission_div';
+
+        // [START refresh_token]
+        // Callback fired if Instance ID token is updated.
+        messaging.onTokenRefresh(() => {
+            messaging.getToken().then((refreshedToken) => {
+                //debugger;
+                console.log('Token refreshed.');
+                // Indicate that the new Instance ID token has not yet been sent to the
+                // app server.
+                setTokenSentToServer(false);
+                // Send Instance ID token to app server.
+                sendTokenToServer(refreshedToken);
+                // [START_EXCLUDE]
+                // Display new Instance ID token and clear UI of all previous messages.
+                resetUI();
+                // [END_EXCLUDE]
+            }).catch((err) => {
+                console.log('Unable to retrieve refreshed token ', err);
+                showToken('Unable to retrieve refreshed token ', err);
+            });
+        });
+        // [END refresh_token]
+
+        // [START receive_message]
+        // Handle incoming messages. Called when:
+        // - a message is received while the app has focus
+        // - the user clicks on an app notification created by a service worker
+        //   `messaging.setBackgroundMessageHandler` handler.
+        messaging.onMessage((payload) => {
+            console.log('Message received Payload ', payload);
+
+        });
+
+        function resetUI() {
+            clearMessages();
+            showToken('loading...');
+            // [START get_token]
+            // Get Instance ID token. Initially this makes a network call, once retrieved
+            // subsequent calls to getToken will return from cache.
+            messaging.getToken().then((currentToken) => {
+                if (currentToken) {
+                    //localStorage.setItem("deviceID", currentToken);
+                    console.log("gloable_var " + currentToken);
+                    sendTokenToServer(currentToken);
+                    updateUIForPushEnabled(currentToken);
+                } else {
+                    // Show permission request.
+                    console.log('No Instance ID token available. Request permission to generate one.');
+                    // Show permission UI.
+                    updateUIForPushPermissionRequired();
+                    setTokenSentToServer(false);
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                showToken('Error retrieving Instance ID token. ', err);
+                setTokenSentToServer(false);
+            });
+            // [END get_token]
+        }
+
+
+        function showToken(currentToken) {
+            // Show token in console and UI.
+            const tokenElement = document.querySelector('#token');
+            tokenElement.textContent = currentToken;
+        }
+
+        // Send the Instance ID token your application server, so that it can:
+        // - send messages back to this app
+        // - subscribe/unsubscribe the token from topics
+        function sendTokenToServer(currentToken) {
+            if (!isTokenSentToServer()) {
+                console.log('Sending token to server...');
+                // TODO(developer): Send the current token to your server.
+                setTokenSentToServer(true);
+            } else {
+                console.log('Token already sent to server so won\'t send it again ' +
+                    'unless it changes');
+                //   if (window['angularComponentRef'] != null && window['angularComponentRef'] != undefined) {
+                //   window['angularComponentRef'].zone.run(function () { window['angularComponentRef'].componentFn(currentToken) });
+                // }
+                localStorage.setItem("deviceID", currentToken);
+                _globalserviceVariable = currentToken;
+                console.log("gloable_var " + _globalserviceVariable);
+            }
+
+        }
+
+        function isTokenSentToServer() {
+            return window.localStorage.getItem('sentToServer') === '1';
+        }
+
+        function setTokenSentToServer(sent) {
+            window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+        }
+
+        function showHideDiv(divId, show) {
+            const div = document.querySelector('#' + divId);
+            if (show) {
+                div.style = 'display: visible';
+            } else {
+                div.style = 'display: none';
+            }
+        }
+
+        function requestPermission() {
+            console.log('Requesting permission...');
+            // [START request_permission]
+            Notification.requestPermission().then((permission) => {
+                if (permission === 'granted') {
+                    console.log('Notification permission granted.');
+                    // TODO(developer): Retrieve an Instance ID token for use with FCM.
+                    // [START_EXCLUDE]
+                    // In many cases once an app has been granted notification permission,
+                    // it should update its UI reflecting this.
+                    resetUI();
+                    // [END_EXCLUDE]
+                } else {
+                    console.log('Unable to get permission to notify.');
+                }
+            });
+            // [END request_permission]
+        }
+
+        function deleteToken() {
+            // Delete Instance ID token.
+            // [START delete_token]
+            messaging.getToken().then((currentToken) => {
+                messaging.deleteToken(currentToken).then(() => {
+                    console.log('Token deleted.');
+                    setTokenSentToServer(false);
+                    // [START_EXCLUDE]
+                    // Once token is deleted update UI.
+                    resetUI();
+                    // [END_EXCLUDE]
+                }).catch((err) => {
+                    console.log('Unable to delete token. ', err);
+                });
+                // [END delete_token]
+            }).catch((err) => {
+                console.log('Error retrieving Instance ID token. ', err);
+                showToken('Error retrieving Instance ID token. ', err);
+            });
+
+        }
+
+        // Add a message to the messages element.
+        function appendMessage(payload) {
+            // debugger;
+            // const messagesElement = document.querySelector('#messages');
+            // const dataHeaderELement = document.createElement('h5');
+            // const dataElement = document.createElement('pre');
+            // dataElement.style = 'overflow-x:hidden;';
+            // dataHeaderELement.textContent = 'Received message:';
+            // dataElement.textContent = JSON.stringify(payload, null, 2);
+            // messagesElement.appendChild(dataHeaderELement);
+            // messagesElement.appendChild(dataElement);
+        }
+
+        // Clear the messages element of all children.
+        function clearMessages() {
+            const messagesElement = document.querySelector('#messages');
+            while (messagesElement.hasChildNodes()) {
+                messagesElement.removeChild(messagesElement.lastChild);
+            }
+        }
+
+        function updateUIForPushEnabled(currentToken) {
+            showHideDiv(tokenDivId, true);
+            showHideDiv(permissionDivId, false);
+            showToken(currentToken);
+        }
+
+        function updateUIForPushPermissionRequired() {
+            showHideDiv(tokenDivId, false);
+            showHideDiv(permissionDivId, true);
+        }
+
+        resetUI();
+        // Handle incoming messages. Called when:
+        // - a message is received while the app has focus
+        // - the user clicks on an app notification created by a service worker
+        //   `messaging.setBackgroundMessageHandler` handler.
+        // messaging.onMessage((payload) => {
+        //     console.log('Message received index.html 2. ', payload);
+        //     debugger;
+        //     // payload.data.notification = JSON.parse(payload.data.notification);
+        //     // data.push(payload);
+        //     // localStorage.setItem("data", JSON.stringify(data));
+        // });
+    </script>
+</body>
+
+</html>

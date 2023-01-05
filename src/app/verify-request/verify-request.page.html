@@ -1,0 +1,8 @@
+<ion-content class="forgot-password-content">
+  <h2 class="auth-title">Did you get verify email?</h2>
+  <p style="font-size: 0.8em; text-align:center;">You can't login without verify. Please verify your email.</p>
+  <ion-input [(ngModel)]="email" type="email" placeholder="Email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+  <ion-button class="reset-password-btn" type="submit" expand="block" (click)="tryVerifyEmail()">SEND EMAIL AGAIN</ion-button>
+  <label class="error-message">{{errorMessage}}</label>
+  <label class="success-message">{{successMessage}}</label>
+</ion-content>

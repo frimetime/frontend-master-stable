@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="light">
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-card padding>
+    <h1>Not verified yet :(</h1>
+    <p>Oh we're sorry! But it seems, that your account hasn't been verified yet. We have sent you a verification email. Please check your mailbox!
+    </p>
+  </ion-card>
+  
+  <ion-button expand="block" fill="solid" color="success" (click)="openVerifyPopup()">
+    Get verification email
+  </ion-button>
+  <ion-button expand="block" fill="clear" color="medium" [routerLink]="['/settings']">
+    Change Account Settings
+  </ion-button>
+  
+  <ion-button class="backbtn" expand="block" fill="clear" color="medium" [routerLink]="['/auth/login']">
+    Back to Login
+  </ion-button>
+
+</ion-content>

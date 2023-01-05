@@ -1,0 +1,239 @@
+//APP SPECIFIC STYLES-------------------------------------------------
+
+h1,
+h2,
+h3,
+h4 {
+
+  font-family: Sen, Arial;
+
+}
+
+h5,
+h6 {
+
+  font-family: Arial;
+  font-size: 0.8rem;
+}
+
+.signupcontent {
+}
+
+.footerbtn h2 {
+
+  color: white;
+  text-align: center;
+  font-family: 'Arial', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+}
+
+.frimered {
+
+  color: #c61c2f;
+}
+
+.frimegreen {
+
+  color: #21b573;
+}
+
+.bgred {
+
+  background-color:#c61c2f;
+  color: white;
+
+}
+
+.bggreen {
+
+  background-color: #21b573;
+  color: white;
+}
+
+.bgblue {
+
+  background-color: #3ac5ff;
+  color: white;
+}
+
+.bgred p,
+.bggreen p,
+.bgblue p{
+
+  color: white;
+}
+
+ion-label {
+
+  font-size: 0.5em;
+}
+
+//PAGE SPECIFIC STYLES-------------------------------------------------
+
+h1,
+h2,
+h3 {
+
+  text-align: center;
+
+}
+
+
+.error-message
+{
+  color: var(--ion-color-danger-tint);
+  font-size: 0.7em;
+}
+
+
+.success-message
+{
+  color: var(--ion-color-success);
+  font-size: 1.5em;
+}
+
+.go-to-login
+{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit-btn
+{
+  width: 50%;
+  color: white;
+}
+
+.signup-btn {
+
+  width: 50%;
+
+}
+
+ion-avatar {
+
+}
+
+.imgadd {
+
+  //--border-radius: 50%;
+  background: var(--ion-color-success);
+}
+
+#imginput {
+
+  opacity: 0;
+}
+
+.camera {
+
+  width: 70px;
+  height: 70px;
+  background: black;
+  border-radius: 50%;
+  border: 2px solid #21b573;
+  position: absolute;
+  right: 20px;
+}
+
+.login-img {
+
+  margin-top: 40px;
+  width: 50%;
+  margin-left: 25%;
+  background-color: white;
+}
+
+.duo-footer {
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100% !important;
+  margin: 0;
+
+}
+
+.duo-footer ion-button {
+
+  width: 100%;
+  margin: 0;
+  min-height: 70px;
+  max-height: 7vh;
+}
+
+.login-p {
+
+  position: fixed;
+  bottom: 35px;
+  left: 11%;
+  font-size: 0.7em;
+  z-index: 5000;
+  color: white;
+}
+
+.termsofuse {
+
+  margin-top: 20px;
+}
+
+.termsofuse p {
+
+  font-size: 12px;
+  margin-top: 0;
+
+}
+
+
+.form {
+
+  width: 90%;
+  padding-top: 50px;
+  margin: auto;
+}
+
+.form ion-input, ion-datetime, ion-select {
+
+
+}
+
+ion-item {
+
+  font-size: 0.8em;
+}
+
+
+// ImagePicker /////////////////////
+
+.image-container {
+  min-height: 200px;
+  background-size: cover;
+}
+
+@media (min-width: 0px) {
+  .images {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 420px) {
+  .images {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 720px) {
+  .images {
+    column-count: 4;
+  }
+}
+
+.one-image {
+  margin: 2px;
+}
+
+.optionbtn {
+
+  margin: auto;
+
+}

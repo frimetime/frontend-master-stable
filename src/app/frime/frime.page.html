@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">      
+      <ion-button [routerLink]="['/app/user/friends']">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png"/>
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--NOTIFICATION POPUP TEST DIV-->
+  <!-- <ion-card padding class="notificationmodal" color="success">
+  <p><ion-icon class="notificationbell" name="notifications"></ion-icon>You've got a new notification!</p>
+  <ion-icon class="closenoti" name="close"></ion-icon>
+</ion-card> -->
+  <h2>Start a Frime!</h2>
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="saveTodo(validations_form.value)">
+    <ion-list lines="none" class="inputs-list">
+      <ion-card id="frimebubble" color="success">
+        <ion-item class="input-item">
+          <ion-input style="font-size: 18px" required type="text" placeholder="Title your Frime" formControlName="title" [(ngModel)]="frime.title"></ion-input>
+        </ion-item>
+        <ion-item class="input-item" id="description-field">
+          <ion-textarea class="description-input" style="font-size: 14px" required maxlength="140" type="text" formControlName="description"
+                        placeholder="Give it a description (max. 140 signs)" [(ngModel)]="frime.message"></ion-textarea>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+    <ion-list id="frime-title-blank" lines="full" class="ion-padding">
+      <ion-item class="counter-item input-item">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label style="text-transform: none;">Choose a date</ion-label>
+        <ion-datetime required type="string" displayFormat="DD. MMM YY" max="2023" min="2021" placeholder="-- --- --" role="combobox"
+                      formControlName="startDate" [(ngModel)]="frime.date"></ion-datetime>
+      </ion-item>
+      <ion-item class="counter-item input-item">
+        <ion-icon name="time"></ion-icon>
+        <ion-label style="text-transform: none;">Starting time</ion-label>
+        <ion-datetime required type="number" displayFormat="HH:mm" placeholder="--:--" minuteValues="0,15,30,45" role="combobox"
+                      formControlName="startTime" [(ngModel)]="frime.time"></ion-datetime>
+      </ion-item>
+      <ion-item class="counter-item input-item">
+        <ion-icon name="people"></ion-icon>
+        <ion-input style="font-size: 18px" min="1" max="50" type="number" placeholder="How many guests?" formControlName="guests" [(ngModel)]="frime.guests"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-buttons class="duo-btns">
+      <ion-button class="duobtn" type="button" fill="solid" color="danger" [routerLink]="['/app/frimelist']">FRIME FEED
+      </ion-button>
+      <ion-button class="duobtn" type="submit" fill="solid" [disabled]="!validations_form.valid" color="success">FRIME IT!</ion-button>
+    </ion-buttons>
+    <label class="error-message ion-padding">{{errorMessage}}</label>
+  </form>
+</ion-content>

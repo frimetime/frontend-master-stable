@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button (click)="myBackButton()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="notifications-content">
+  <ion-grid>
+    <ion-row class="usercard">
+      <ion-col size="12">
+        <img *ngIf="image != null" class="frimecrown" src="/assets/images/crown-gold.png" />
+        <ion-avatar class="user-avatar">
+          <label for="chooseFile">
+            <img *ngIf="image != null && image.indexOf('http')<0" src="https://frimetime.com/{{image}}" />
+            <img *ngIf="image != null && image.indexOf('http')==0" src="{{images}}" />
+            <img *ngIf="image == null" src="/assets/images/avartar.jpg" />
+          </label>
+        </ion-avatar>
+      </ion-col>            
+      <ion-col size="12">
+        <h1 *ngIf="username"> {{username}}</h1>
+       
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card *ngIf="description" class="ion-padding usercard">
+          <p >
+            {{description}}
+          </p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      
+    </ion-row>
+    <ion-row class="ion-padding">
+     
+    </ion-row>
+  </ion-grid>  
+</ion-content>

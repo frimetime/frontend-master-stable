@@ -1,0 +1,190 @@
+<ion-content class="form-content">
+  
+    
+  <h1>Register your account!</h1>
+
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Username</ion-label>
+      <ion-input required type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div 
+        class="error-message" 
+        *ngIf="
+         validations_form.get('name').hasError(validation.type) && 
+          (validations_form.get('name').dirty || validations_form.get('name').touched)
+        "
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label postion="floating" color="primary">Country</ion-label>
+      <ion-select required placeholder="" formControlName="country" okText="OK" cancelText="Back">
+        <ion-select-option *ngFor = "let c of countryData" value="{{c.id}}">{{c.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.country">
+        <div
+          class="error-message"
+          *ngIf="
+            validations_form.get('country').hasError(validation.type) &&
+            (validations_form.get('country').dirty ||
+              validations_form.get('country').touched)
+          "
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label postion="floating" color="primary">Role</ion-label>
+      <ion-select required placeholder="" role="combobox" formControlName="role" okText="OK" cancelText="Back">
+        <ion-select-option value="female">Female</ion-select-option>
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
+        <ion-select-option value="company">Company</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.role">
+        <div
+          class="error-message"
+          *ngIf="
+            validations_form.get('role').hasError(validation.type) &&
+            (validations_form.get('role').dirty ||
+              validations_form.get('role').touched)
+          "
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label postion="floating" color="primary">Date of birth</ion-label>
+      <ion-datetime formControlName="birthdate" okText="OK" cancelText="Back" displayFormat="DD.MM.YYYY" max="2005"></ion-datetime>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.birthdate">
+        <div
+          class="error-message"
+          *ngIf="
+            validations_form.get('birthdate').hasError(validation.type) &&
+            (validations_form.get('birthdate').dirty ||
+              validations_form.get('birthdate').touched)
+          "
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input required type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div
+          class="error-message"
+          *ngIf="
+            validations_form.get('email').hasError(validation.type) &&
+            (validations_form.get('email').dirty ||
+              validations_form.get('email').touched)
+          "
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div
+          class="error-message"
+          *ngIf="
+            validations_form.get('password').hasError(validation.type) &&
+            (validations_form.get('password').dirty ||
+              validations_form.get('password').touched)
+          "
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Confirm Password</ion-label>
+      <ion-input type="password" formControlName="cpassword"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.cpassword">
+        <div
+          class="error-message"
+          *ngIf="
+            validations_form.get('cpassword').hasError(validation.type) &&
+            (validations_form.get('cpassword').dirty ||
+              validations_form.get('cpassword').touched)
+          "
+        >
+          {{ validation.message }}
+        </div>
+        <div
+                class="error-message"
+                *ngIf="!validations_form.get('cpassword').errors &&
+           validations_form.hasError('passwordNotMatch') &&
+           (validations_form.get('cpassword').dirty ||
+           validations_form.get('cpassword').touched)
+           "
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    
+    <div class="termsofuse">
+      <ion-row>
+        <ion-col size="1">
+          <ion-checkbox formControlName="cbox"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10">
+          <p>
+            I have read and accepted the
+            <a [routerLink]="['/auth/terms']">Terms of use</a>
+          </p>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!--<div nbRecaptcha key="public key" formControlName="captcha"></div> -->
+      
+    
+    <!-- <div class="login-p">
+      <p>
+        Already signed up?
+      </p>
+    </div> -->
+  <ion-buttons class="duo-footer">
+      <ion-button class="footer-btn bgred" (click)="goLoginPage()">
+        GO TO LOGIN
+      </ion-button>
+      <ion-button class="submit-btn bggreen" type="submit" [disabled]="!validations_form.valid" fill="clear">
+        SIGN IN
+      </ion-button>
+    </ion-buttons>
+   
+    <label class="error-message">{{ errorMessage }}</label>
+    <label class="success-message">{{ successMessage }}</label>
+  </form>
+</ion-content>

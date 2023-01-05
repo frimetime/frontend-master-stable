@@ -1,0 +1,13 @@
+/.firebase
+/.idea
+/android
+/ios
+/node_modules
+/www
+/platforms
+/plugins
+/resources
+package-lock.json
+/.vs
+/.vscode
+package-lock.json

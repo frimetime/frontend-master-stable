@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-list no-padding>
+    <ion-col>
+    <h2 style="text-align: center;" class="auth-title">Frime is full!</h2>
+    <p style="font-size: 0.8em; text-align:center;">Unfortunately this Frime is already full. Why not create your own?</p>
+    </ion-col>
+  <ion-row >
+    <ion-col>
+      <ion-button expand="full" color="danger" class="joinfrimebtn" (click)="closePopover()">Ok</ion-button>
+    </ion-col>
+    
+    <ion-col>
+      <ion-button expand="full" color="success" class="joinfrimebtn" [routerLink]="['/app/frime']">Create Frime!</ion-button>
+    </ion-col>
+  </ion-row>
+  </ion-list>  
+</ion-content>

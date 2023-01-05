@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button (click)="myBackButton()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <img class="header-logo" src="/assets/images/frimetime.png" />
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="user-friends-content">
+  <ion-segment class="user-friends-segment" mode="md" (ionChange)="segmentChanged($event)">
+    <ion-segment-button mode="md" value="followers">
+      <ion-label>My Friendlist</ion-label>
+    </ion-segment-button>
+    <ion-segment-button checked="true" mode="md" value="frimers">
+      <ion-label>Search for friends</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-row>
+    <ion-searchbar class="friends-searchbar" animated mode="ios" [(ngModel)]="searchQuery" (ionChange)="searchList()">
+    </ion-searchbar>
+    <ion-button color="light" class="share-btn" (click)="shareLink()">
+      <ion-icon name="share-social"></ion-icon>
+    </ion-button>
+    <!-- <ion-button color="success" class="share-btn" onclick="window.plugins.socialsharing.share('Message only')">
+      <ion-icon name="share-social"></ion-icon>
+    </ion-button> -->
+  </ion-row>
+
+
+
+  <section [hidden]="segmentValue !== 'followers'">
+
+    <ng-template #followerItem let-followers="followers">
+      <ion-row class="user-details-section">
+        <ion-col class="user-image-wrapper" size="2">
+          <app-aspect-ratio [ratio]="{w:1, h:1}">
+            <app-image-shell *ngIf="followers.image && followers.image.indexOf('http')<0" class="user-image"
+              animation="spinner" src="https://frimetime.com/{{followers.image}}" [alt]="'follower'"></app-image-shell>
+            <app-image-shell *ngIf="followers.image && followers.image.indexOf('http')==0" class="user-image"
+              animation="spinner" src="{{followers.image}}" [alt]="'follower'"></app-image-shell>
+            <app-image-shell *ngIf="!followers.image" class="user-image" animation="spinner"
+              src="/assets/images/avartar.jpg" [alt]="'follower'"></app-image-shell>
+          </app-aspect-ratio>
+        </ion-col>
+        <ion-col class="user-data-wrapper">
+          <div class="user-info">
+            <h3 class="user-name">
+              <app-text-shell [data]="followers.username"></app-text-shell>
+            </h3>
+            <h5 class="user-job">
+              <app-text-shell *ngIf="followers.description" [data]="followers.description"></app-text-shell>
+            </h5>
+          </div>
+        </ion-col>
+        <ion-col class="user-actions-wrapper">
+          <!-- <ion-button>Block</ion-button>
+        <ion-button>Unblock</ion-button> -->
+          <ion-button (click)="doDeleteFriendPopover(followers)">Delete</ion-button>
+        </ion-col>
+      </ion-row>
+    </ng-template>
+
+    <ion-list class="friends-list" *ngIf="followersList.length > 0">
+      <ion-item class="friend-item" *ngFor="let followers of followersList">
+        <ng-container *ngTemplateOutlet="followerItem; context: { followers: followers }"></ng-container>
+      </ion-item>
+    </ion-list>
+    <ng-container *ngIf="!followersList || followersList.length <= 0">
+      <h3 class="empty-list-message">You have no Friends yet</h3>
+    </ng-container>
+  </section>
+
+  <section [hidden]="segmentValue !== 'frimers'">
+
+    <ng-template #frimerItem let-frimer="frimer">
+      <ion-row class="user-details-section">
+        <ion-col class="user-image-wrapper" size="2">
+          <app-aspect-ratio [ratio]="{w:1, h:1}">
+            <app-image-shell *ngIf="frimer.image && frimer.image.indexOf('http')<0" class="user-image"
+              animation="spinner" src="https://frimetime.com/{{frimer.image}}" [alt]="'frimer'"></app-image-shell>
+            <app-image-shell *ngIf="frimer.image && frimer.image.indexOf('http')==0" class="user-image"
+              animation="spinner" src="{{frimer.image}}" [alt]="'frimer'"></app-image-shell>
+            <app-image-shell *ngIf="!frimer.image" class="user-image" animation="spinner"
+              src="/assets/images/avartar.jpg" [alt]="'frimer'"></app-image-shell>
+          </app-aspect-ratio>
+        </ion-col>
+        <ion-col class="user-data-wrapper">
+          <div class="user-info">
+            <h3 class="user-name">
+              <app-text-shell [data]="frimer.username"></app-text-shell>
+            </h3>
+            <h5 class="user-job">
+              <app-text-shell *ngIf="frimer.description" [data]="frimer.description"></app-text-shell>
+            </h5>
+          </div>
+        </ion-col>
+        <ion-col class="user-actions-wrapper">
+          <ion-button (click)="openPopover(frimer)">ADD</ion-button>
+        </ion-col>
+      </ion-row>
+    </ng-template>
+
+    <ion-list class="friends-list" *ngIf="frimerList && frimerList.length > 0">
+      <ion-item class="friend-item" *ngFor="let frimer of frimerList">
+        <ng-container *ngTemplateOutlet="frimerItem; context: { frimer: frimer }"></ng-container>
+      </ion-item>
+    </ion-list>
+    <ng-container *ngIf="!frimerList || frimerList.length <= 0">
+      <h3 class="empty-list-message">No users data found!</h3>
+    </ng-container>
+  </section>
+  <web-social-share show="false" style="--web-social-share-height: 140px;">
+    <ion-icon name="logo-facebook" class="fb-icon" slot="facebook"></ion-icon>
+    <ion-icon name="logo-twitter"  class="twitter-icon"  slot="twitter"></ion-icon>
+    <ion-icon name="logo-whatsapp" class="whatsapp-icon"  slot="whatsapp"></ion-icon>
+    <ion-icon name="mail" class="mail-icon"  slot="email"></ion-icon>
+    <ion-icon name="copy" class="copy-icon"   slot="copy"></ion-icon>
+
+  </web-social-share>
+</ion-content>

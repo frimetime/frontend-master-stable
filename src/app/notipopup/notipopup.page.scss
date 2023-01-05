@@ -1,0 +1,40 @@
+:host {
+    --page-margin: var(--app-broad-margin);
+    --page-background: transparent;
+  }
+  .notificationmodal {
+    --padding-start: var(--page-margin);
+    --padding-end: var(--page-margin);
+    --padding-top: 0 !important;
+  
+    .p {    
+      text-align: center;
+    }
+
+    ion-content {
+        
+    --page-background: transparent;
+    }
+
+    ion-card {
+
+        height: 40px;
+        z-index: 5000;
+      
+      }      
+      
+      .notificationmodal p {
+      
+        margin-top: 0 !important;
+      
+      }
+      .closenoti {
+      
+        position: absolute !important;
+        top: 5px;
+        right: 5px;
+      }
+      
+  }
+  
+  
